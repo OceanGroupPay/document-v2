@@ -15,7 +15,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "ci-cd-gggpay": "git checkout release-gggpay && git pull origin main && git push -f && git checkout main",
     "ci-cd-safepay2u": "git checkout release-safepay2u && git pull origin main && git push -f && git checkout main",
-    "ci-cd-oceanpay": "git checkout release-oceanpay && git pull origin main && git push -f && git checkout main"
+    "ci-cd-oceanpay": "git checkout release-oceanpay && git pull origin main && git push -f && git checkout main",
+    "ci-cd-all": "yarn ci-cd-gggpay && yarn ci-cd-safepay2u && yarn ci-cd-oceanpay"
   },
   "dependencies": {
     "@docusaurus/core": "2.1.0",

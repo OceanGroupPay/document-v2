@@ -26,7 +26,7 @@ jobs:
         run: |
           echo "ENV_BRAND=SafePay2u" >> $GITHUB_ENV
           echo "ENV_DOMAIN=safepay2u.com" >> $GITHUB_ENV
-          echo "ENV_EMAIL=support@safepay2u.com" >> $GITHUB_ENV
+          echo "ENV_EMAIL=info@safepay2u.com" >> $GITHUB_ENV
           echo "ENV_LOGO=safepay2u.png" >> $GITHUB_ENV
 
       - name: Build project
