@@ -2,11 +2,18 @@
 title: Setup
 ---
 
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { EnvVariable } from '../../src/atoms/EnvVariable';
+
+export const Image = ({ envKey }) => {
+  const { siteConfig } = useDocusaurusContext();
+  const imgUrl = `/img/quickstart/${siteConfig?.customFields[envKey]}-setup.jpeg`;
+  return <img src={imgUrl} />
+}
 
 ### Step 1. Login Merchant Portal
 Access <EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} />, then on the **Sidebar** from the left, go to **Development Manage** -> **Development Settings**
-![image](/img/quickstart/get-configuration.jpeg)
+<Image envKey={"ENV_DOMAIN"} />
 
 ### Step 2. Generate Credentials
 If this is Merchant first visit to this page, please fill up the *Redirect URL, Callback URL, Withdraw Callback URL*, and generate for **Key, Secret**, along a keypair of **PublicKey** and **PrivateKey**.

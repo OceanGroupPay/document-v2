@@ -2,21 +2,9 @@
 title: 概述
 ---
 
-import { Box, Heading, Text, Card, Image, Button, Flex } from "rebass";
-export const Highlight = ({ children, color }) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: "2px",
-      color: "#fff",
-      padding: "0.2rem",
-    }}
-  >
-    {children}
-  </span>
-);
+import { EnvVariable } from '../../../../../src/atoms/EnvVariable';
 
-**MyPay88**允许开发者通过API来进行交易，主要关注通过RESTful API或SDK进行支付和提款。 所有MyPay88产品都有其大部分核心功能的 API。希望能通过MyPay88的全面API来重新构想您的业务。
+**<EnvVariable envKey={"ENV_BRAND"} />**允许开发者通过API来进行交易，主要关注通过RESTful API或SDK进行支付和提款。 所有 <EnvVariable envKey={"ENV_BRAND"} /> 产品都有其大部分核心功能的 API。希望能通过 <EnvVariable envKey={"ENV_BRAND"} />的全面API来重新构想您的业务。
 
 ## 环境
 
@@ -24,19 +12,19 @@ export const Highlight = ({ children, color }) => (
 
 ### 沙盒 环境
 
-登录系统 -> https://demo.mypay88.asia/ <br />
-API 接口服务器 -> https://testapi.mypay88.asia <br />
+登录系统 -> <EnvVariable domainPrefix={`https://demo.`} envKey={"ENV_DOMAIN"} /> <br />
+API 接口服务器 -> <EnvVariable domainPrefix={`https://testapi.`} envKey={"ENV_DOMAIN"} /> <br />
 
 ### 生产 环境
 
-登录系统 -> https://merchant.mypay88.asia
-API 接口服务器 -> https://api.mypay88.asia
+登录系统 -> <EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} /> <br />
+API 接口服务器 -> <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} />
 
 **开始之前**
 
-前往[商户平台](https://merchant.mypay88.asia) 注册成为商家
+前往[商户平台]\(<EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} />\)  注册成为商家
 
-提交商家门户中显示的所有必需文件，并获得我们管理员的批准。 如果您需要更多帮助，请通过 <helpcare@mypay88.co> 联系我们。
+提交商家门户中显示的所有必需文件，并获得我们管理员的批准。 如果您需要更多帮助，请通过 <EnvVariable envKey={"ENV_EMAIL"} /> 联系我们。
 
 :::note
 以下步骤记录了 RESTful API。 针对特定语言

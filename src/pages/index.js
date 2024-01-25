@@ -19,7 +19,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro/overview">
-            MyPay88 Documentation ⏱️
+            Integration Documentation ⏱️
           </Link>
         </div>
       </div>

@@ -21,6 +21,13 @@ jobs:
 
       - name: Install NPM packages
         run: npm install
+      
+      - name: Set environment variables
+        run: |
+          echo "ENV_BRAND=SafePay2u" >> $GITHUB_ENV
+          echo "ENV_DOMAIN=safepay2u.com" >> $GITHUB_ENV
+          echo "ENV_EMAIL=support@safepay2u.com" >> $GITHUB_ENV
+          echo "ENV_LOGO=safepay2u.png" >> $GITHUB_ENV
 
       - name: Build project
         run: npm run build

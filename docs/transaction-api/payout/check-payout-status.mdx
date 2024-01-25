@@ -58,7 +58,7 @@ Please refer to [Signature Algorithm](/docs/credential/signature-algorithm) on h
 ### Step 4: POST to `/gggpay/v1/getTransactionStatusById` endpoint
 
 **Method :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**Endpoint:** https://api.mypay88.asia/gggpay/v1/getTransactionStatusById
+**Endpoint:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/getTransactionStatusById`} />
 
 ### Request
 
@@ -141,7 +141,7 @@ The result is in plaintext as
     "recipient": {
         "name": "Long Wan",
         "phone": "0123456789",
-        "email": "helpcare@mypay88.co",
+        "email": "longwan@gmail.com",
         "methodType": "CIBBMYKL",
         "methodValue": "8044591766",
         "methodRef": ""      

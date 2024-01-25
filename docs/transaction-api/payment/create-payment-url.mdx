@@ -53,7 +53,7 @@ Generate `nonceStr` and `timestamp`, which will be placed into Request Headers a
   "customer": {
     "name": "Long Wan",
     "phone": "0123456789",
-    "email": "helpcare@mypay88.co"
+    "email": "longwan@gmail.com"
   },
   "method": "CIMB_MY"
 }
@@ -61,7 +61,7 @@ Generate `nonceStr` and `timestamp`, which will be placed into Request Headers a
 
 Sort the above json key **alphabetically** and make it **compact**
 :::info
-{"customer":{"name":"Long Wan","phone":"0123456789","email":"helpcare@mypay88.co"},"method":"CIMB_MY","order":{"id":"A20221111","title":"Payment","amount":"88.50","currencyType":"MYR","additionalData":""}}
+{"customer":{"name":"Long Wan","phone":"0123456789","email":"longwan@gmail.com"},"method":"CIMB_MY","order":{"id":"A20221111","title":"Payment","amount":"88.50","currencyType":"MYR","additionalData":""}}
 :::
 
 
@@ -85,7 +85,7 @@ Please refer to [Signature Algorithm](/docs/credential/signature-algorithm) on h
 ### Step 4: POST to `/gggpay/v1/createPayment` endpoint
 
 **Method :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**Endpoint:** https://api.mypay88.asia/gggpay/v1/createPayment
+**Endpoint:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/createPayment`} />
 
 ### Request
 
@@ -151,7 +151,7 @@ The result is in plaintext as
 ```
 {
   "data": {
-    "paymentUrl": "https://api.mypay88.asia/checkout/payment?orderId=4cdcd4e7a712071ef54f83780b8bbd40",
+    "paymentUrl": "https://api.gggpay.org/checkout/payment?orderId=4cdcd4e7a712071ef54f83780b8bbd40",
     "transactionId": "10535"
   }
 }

@@ -51,7 +51,7 @@ Generate `nonceStr` and `timestamp`, which will be placed into Request Headers a
   "recipient": {
     "name": "Long Wan",
     "phone": "0123456789",
-    "email": "helpcare@mypay88.co",
+    "email": "longwan@gmail.com",
     "methodType": "CIBBMYKL",
     "methodValue": "8044591766",
     "methodRef": ""
@@ -62,7 +62,7 @@ Generate `nonceStr` and `timestamp`, which will be placed into Request Headers a
 
 Sort the above json key **alphabetically** and make it **compact**
 :::info
-{"order":{"id":"10006","amount":"1","currencyType":"MYR"},"recipient":{"name":"Long Wan","phone":"0123456789","email":"helpcare@mypay88.co","methodType":"CIBBMYKL","methodValue":"8044591766","methodRef":""}}
+{"order":{"id":"10006","amount":"1","currencyType":"MYR"},"recipient":{"name":"Long Wan","phone":"0123456789","email":"longwan@gmail.com","methodType":"CIBBMYKL","methodValue":"8044591766","methodRef":""}}
 :::
 
 
@@ -86,7 +86,7 @@ Please refer to [Signature Algorithm](/docs/credential/signature-algorithm) on h
 ### Step 4: POST to `/gggpay/v1/withdrawRequest` endpoint
 
 **Method :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**Endpoint:** https://api.mypay88.asia/gggpay/v1/withdrawRequest
+**Endpoint:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/withdrawRequest`}  />
 
 ### Request
 

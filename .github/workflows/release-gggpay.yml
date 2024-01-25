@@ -21,7 +21,6 @@ jobs:
 
       - name: Install NPM packages
         run: npm install
-      
 
       - name: Set environment variables
         run: |

@@ -2,17 +2,24 @@
 title: 设置
 ---
 
-import { Box, Heading, Text, Card, Image, Button, Flex } from "rebass";
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { EnvVariable } from '../../../../../src/atoms/EnvVariable';
+
+export const Image = ({ envKey }) => {
+  const { siteConfig } = useDocusaurusContext();
+  const imgUrl = `/img/quickstart/${siteConfig?.customFields[envKey]}-setup.jpeg`;
+  return <img src={imgUrl} />
+}
 
 ### 步骤 1. 登录商家门户
-访问【MyPay88商户门户】(https://merchant.mypay88.asia) ,然后在 **侧边栏** 左起，进入 **开发管理** -> **开发设置**
-![图片](/img/quickstart/get-configuration.jpeg)
+访问【<EnvVariable envKey={"ENV_BRAND"} />商户门户】<EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} /> ,然后在 **侧边栏** 左起，进入 **开发管理** -> **开发设置**
+<Image envKey={"ENV_DOMAIN"} />
 
 ### 步骤 2. 生成凭证
 如果是商家第一次访问此页面，请填写*Redirect URL、Callback URL、Withdraw Callback URL*，并生成**Key、Secret**，以及**PublicKey**和**PrivateKey**的密钥对。
 
 :::note
-请妥善保管**私钥**，因为 MyPay88 不会存储私钥。
+请妥善保管**私钥**，因为 <EnvVariable envKey={"ENV_BRAND"} /> 不会存储私钥。
 :::
 
 ### 步骤 3. 将它们存储为环境变量或配置文件

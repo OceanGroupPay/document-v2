@@ -24,9 +24,10 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "ENV_BRAND=GGGPAY" >> $GITHUB_ENV
-          echo "ENV_DOMAIN=gggpay.org" >> $GITHUB_ENV
-          echo "ENV_EMAIL=support@gggpay.org" >> $GITHUB_ENV
+          echo "ENV_BRAND=MyPay88" >> $GITHUB_ENV
+          echo "ENV_DOMAIN=mypay88.asia" >> $GITHUB_ENV
+          echo "ENV_EMAIL=support@mypay88.asia" >> $GITHUB_ENV
+          echo "ENV_LOGO=mypay88.webp" >> $GITHUB_ENV
 
       - name: Build project
         run: npm run build

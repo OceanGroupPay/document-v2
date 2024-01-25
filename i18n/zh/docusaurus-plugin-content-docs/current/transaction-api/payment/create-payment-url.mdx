@@ -2,6 +2,8 @@
 title: 创建付款链接
 ---
 
+import { EnvVariable } from '../../../../../../src/atoms/EnvVariable';
+
 ### 第 1 步：获取访问令牌
 
 `访问令牌`的获取方法请参考[访问令牌](/docs/credential/access-token)，然后放入请求Headers头部的**Authorization**字段。
@@ -53,7 +55,7 @@ title: 创建付款链接
   "customer": {
     "name": "Long Wan",
     "phone": "0123456789",
-    "email": "helpcare@mypay88.co"
+    "email": "longwan@gmail.com"
   },
   "method": "CIMB_MY"
 }
@@ -61,7 +63,7 @@ title: 创建付款链接
 
 对上面的json键**按字母顺序**排序并使其**紧凑**
 :::info
-{"customer":{"name":"Long Wan","phone":"0123456789","email":"helpcare@mypay88.co"},"method":"CIMB_MY","order":{"id":"A20221111","title":"Payment","amount":"88.50","currencyType":"MYR","additionalData":""}}
+{"customer":{"name":"Long Wan","phone":"0123456789","email":"longwan@gmail.com"},"method":"CIMB_MY","order":{"id":"A20221111","title":"Payment","amount":"88.50","currencyType":"MYR","additionalData":""}}
 :::
 
 
@@ -85,7 +87,7 @@ e4e9ac1120ed867a7af108af8b1ab9183319f8a334bcdbbea47232359ae0a5c9c4ad1e46450ef4b3
 ### 第 4 步：POST 到 `/gggpay/v1/createPayment` 接口
 
 **方式 :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**接口:** https://api.mypay88.asia/gggpay/v1/createPayment
+**接口:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/createPayment`}  />
 
 ### 请求
 
@@ -151,7 +153,7 @@ e4e9ac1120ed867a7af108af8b1ab9183319f8a334bcdbbea47232359ae0a5c9c4ad1e46450ef4b3
 ```
 {
   "data": {
-    "paymentUrl": "https://api.mypay88.asia/checkout/payment?orderId=4cdcd4e7a712071ef54f83780b8bbd40",
+    "paymentUrl": "https://api.gggpay.org/checkout/payment?orderId=4cdcd4e7a712071ef54f83780b8bbd40",
     "transactionId": "10535"
   }
 }

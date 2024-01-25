@@ -2,6 +2,8 @@
 title: 查看提款状态
 ---
 
+import { EnvVariable } from '../../../../../../src/atoms/EnvVariable';
+
 ### 第 1 步：获取访问令牌
 
 `访问令牌`的获取方法请参考[访问令牌](/docs/credential/access-token)，然后放入请求Headers头部的**Authorization**字段。
@@ -58,7 +60,7 @@ e4e9ac1120ed867a7af108af8b1ab9183319f8a334bcdbbea47232359ae0a5c9c4ad1e46450ef4b3
 ### 第 4 步：POST 到 `/gggpay/v1/getTransactionStatusById` 接口
 
 **方式 :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**接口:** https://api.mypay88.asia/gggpay/v1/getTransactionStatusById
+**接口:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/getTransactionStatusById`}  />
 
 ### 请求
 
@@ -141,7 +143,7 @@ e4e9ac1120ed867a7af108af8b1ab9183319f8a334bcdbbea47232359ae0a5c9c4ad1e46450ef4b3
     "recipient": {
         "name": "Long Wan",
         "phone": "0123456789",
-        "email": "helpcare@mypay88.co",
+        "email": "longwan@gmail.com",
         "methodType": "CIBBMYKL",
         "methodValue": "8044591766",
         "methodRef": ""      
