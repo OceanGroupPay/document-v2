@@ -1,0 +1,62 @@
+---
+title: 提款回调
+---
+
+import { Box, Heading, Text, Card, Image, Button, Flex } from "rebass";
+
+:::note
+通知链接 或 回调链接 用于在提交提款申请后通知服务器交易状态
+:::
+
+:::warning
+请确保您已在商户平台里已填写好 提款回调地址
+:::
+
+### 请求参数
+
+| 参数   |  类型  | 必填 | 说明               |     示例      |
+| ----------- | ------ | -------- | -------------------- |
+| `encryptedToken`        | String | 加密的数据，需要通过 `CLIENT_SYMMETRIC_KEY` 来解密     |   a83cf72884cbbb....3ddf0744646e0cf0b482            |
+
+> 返回示例
+
+```json
+{
+  "encryptedData": "e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45",
+}
+```
+
+### 使用 CLIENT_SYMMETRIC_KEY 解密 `encryptedData`
+
+用 **CLIENT_SYMMETRIC_KEY**, `PCd1dlEmFnBXaVce06Pzp7Vike0oHnVJ`
+对称解密 **encryptedData**,  `e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45`  
+
+解密后获取值为
+
+```
+{
+  "message": "Success",
+  "data": {
+    "status": "PENDING",
+    "transaction": {
+        "id": 10025,
+        "amountWithdraw": 0,
+        "confirmedAt": 0,
+        "commissionFee": 0
+    },
+    "order": {
+      "id": "10006",
+      "amount": "1",
+      "currencyType": "MYR"
+    },
+    "recipient": {
+        "name": "Long Wan",
+        "phone": "0123456789",
+        "email": "helpcare@mypay88.co",
+        "methodType": "CIBBMYKL",
+        "methodValue": "8044591766",
+        "methodRef": ""      
+    }
+  }
+}
+```

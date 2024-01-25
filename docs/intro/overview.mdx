@@ -1,0 +1,33 @@
+---
+title: Overview
+---
+
+import { EnvVariable } from '../../src/atoms/EnvVariable';
+
+
+**<EnvVariable envKey={"ENV_BRAND"} />** Open APIs allow developers to manage transactions, mainly focusing on both Payment and Payout through RESTful API or SDK. All MyPay88 products have API for most of its core functionalities. Start with our comprehensive API to reimagine your business.
+
+## API Environment Summary
+
+There are two environments provided to test out functionalities and also to ensure integrations are done seamlessly, there are **Sandbox** Environment and **Production** Environment.
+
+### Sandbox Environment
+
+Login Dashboard -> <EnvVariable domainPrefix={`https://demo.`} envKey={"ENV_DOMAIN"} /><br />
+API Server -> <EnvVariable domainPrefix={`https://testapi.`} envKey={"ENV_DOMAIN"} /><br />
+
+### Production Environment
+
+Login Dashboard -> <EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} /><br />
+API Server -> <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} />
+
+**Before You Start**
+
+Go to [Merchant Portal]\(<EnvVariable domainPrefix={`https://merchant.`} envKey={"ENV_DOMAIN"} />\) to sign up as merchant.
+
+Submit all required documents as shown in the merchant portal and get approval from our admin. If you need more assistance, please contact us at <EnvVariable envKey={"ENV_EMAIL"} />.
+
+:::note
+The following steps document the RESTful API. For language specific
+SDK(s), please refer to the [SDK section](../quickstart/sdk).
+:::

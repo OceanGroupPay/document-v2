@@ -1,0 +1,159 @@
+---
+title: 创建提款请求
+---
+
+### 第 1 步：获取访问令牌
+
+`访问令牌`的获取方法请参考[访问令牌](/docs/credential/access-token)，然后放入请求Headers头部的**Authorization**字段。
+
+### 第 2 步：准备请求参数
+
+生成 `nonceStr` 和 `timestamp`，它们将被放入请求 Headers头部 并用于创建 **签名**。
+
+| 参数   |  类型  | 必填 | 说明               |     示例      |
+| :---------- | :----: | :------: | :------------------------ | :--------------: |
+| `nonceStr`  | String |   是    | 随机字符串             | 7a70f55482a5566c |
+| `timestamp` | String |   是    | UNIX格式的 请求的时间戳  |  1667061151361   |
+
+#### 请求参数
+
+| 参数   |  类型  | 必填 | 说明               |     示例      |
+| :---------- | :----: | :------: | :------------------------ | :--------------: |
+| `order`     | Object |   是    | 订单信息，对象字段为 <br />[id, amount, currencyType]  |  |
+| `recipient`  | Object |   是    | 收款人信息, 对象字段为 <br />[name, phone, email, methodType, methodValue, methodRef] |  |
+
+#### Order [Object]
+| 参数   |  类型  | 必填 | 说明               |     示例      |
+| ---------------- | ------ | -------- | ------------------------------------------------------------------------------------------------- | ------------------------------ |
+| `amount`         | String   | 是      | 数额。 100 = RM 100.00 | 100                            |
+| `currencyType`   | String | 是      | 币种 (目前只支持 `MYR`)                                             | "MYR"                          |
+| `id`             | String | 是 | "6170506694335521334"                                                                             |
+
+#### Recipient [Object]
+| 参数   |  类型  | 必填 | 说明               |     示例      |
+| ------------- | ------ | -------- | -------------------------------------- | ---------- |
+| `name`      | String | 是      | 客户名字| "Long Wan" |
+| `email`       | String | 是 | 客户邮箱                         | ""         |
+| `phone` | String | 是 | 客户电话                 | ""         |
+| `methodType` | String | 是 | 列表 [提款/出款 - Swift Code](/docs/appendix/payment-method#提款出款---swift-code)                 | "RHBBMYKL"         |
+| `methodValue` | String | 是 |                  | ""         |
+| `methodRef` | String | 是 | 如果有任何其他信息，例如 PASSPORT 将需要 COUNTRY_CODE  | "" |
+
+> 请求示例
+
+```json
+{
+  "order": {
+    "id": "10006",
+    "amount": "1",
+    "currencyType": "MYR"
+  },
+  "recipient": {
+    "name": "Long Wan",
+    "phone": "0123456789",
+    "email": "helpcare@mypay88.co",
+    "methodType": "CIBBMYKL",
+    "methodValue": "8044591766",
+    "methodRef": ""
+  }
+}
+
+```
+
+对上面的json键**按字母顺序**排序并使其**紧凑**
+:::info
+{"order":{"id":"10006","amount":"1","currencyType":"MYR"},"recipient":{"name":"Long Wan","phone":"0123456789","email":"helpcare@mypay88.co","methodType":"CIBBMYKL","methodValue":"8044591766","methodRef":""}}
+:::
+
+
+使用 Base64 格式对数据进行编码
+
+:::info
+eyJjdXN0b21lciI6eyJuYW1lIjoiTGVvbiBUYW4iLCJwaG9uZSI6IjAxMjM0NTY3ODkiLCJlbWFpbCI6Imxlb25AZ2dncGF5Lm9yZyJ9LCJtZXRob2QiOiJGUFgiLCJvcmRlciI6eyJpZCI6IkEyMDIyMTExMSIsInRpdGxlIjoiUGF5bWVudCIsImFtb3VudCI6Ijg4LjUwIiwiY3VycmVuY3lUeXBlIjoiTVlSIiwiYWRkaXRpb25hbERhdGEiOiIifX0=
+:::
+
+用 **CLIENT_SYMMETRIC_KEY** 对 base64 格式的数据进行编码
+:::info
+e4e9ac1120ed867a7af108af8b1ab9183319f8a334bcdbbea47232359ae0a5c9c4ad1e46450ef4b36775aeb624b14b722a6884abd9b1f7572f1fdb33ce7a8bfec3d69d3e2e1aa77487c55b181613bfbef1028c8da984f5b59c8d6241eefcaf70
+:::
+
+
+
+### 第 3 步：生成签名
+
+请参阅 [签名算法](/docs/credential/signature-algorithm) 关于如何获取 `签名`，然后将其放入请求 Headers头部 的 **X-Signature** 中。
+
+### 第 4 步：POST 到 `/gggpay/v1/withdrawRequest` 接口
+
+**方式 :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
+**接口:** https://api.mypay88.asia/gggpay/v1/withdrawRequest
+
+### 请求
+
+#### Headers
+
+| 参数       |  类型  | 说明             |
+| :-------------- | :----: | ----------------------- |
+| `Authorization` | String | `Token` 第1步骤获取   |
+| `X-Nonce-Str`   | String | `nonceStr` 第2步骤获取  |
+| `X-Timestamp`   | String | `timestmap` 第2步骤获取 |
+| `X-Signature`   | String | `signature` 第3步骤获取|
+
+#### Body
+
+| 参数 |  类型  | 说明                           |                                        示例 |
+| :-------- | :----: | ------------------------------------- | ---------------------------------------------: |
+| `data`    | String |  通过 CLIENT_SYMMETRIC_KEY 加密后 | e4e9ac1127af1...b59c8d62af70 |
+
+
+> 请求Header & Body示例
+
+```json
+{
+  "headers": {
+    "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjEwMDIOjE2NjczMTYwOTJ9.UnVBt6Opxd_ZOMns1gCT40Ihdj1nbndi2V43Xt3fIuE",
+    "X-Nonce-Str": "7a70f55482a5566c",
+    "X-Timestamp": "1667061151361",
+    "X-Signature": "sha256 zOzjz8QoGTbesuAO5CCFbPCF3EMDtohKtkQPro8O61jbXhurgl+wIYzTv1BQPB6z1+bRn7gXx1YpsItk+Zed+Wd9PqmexoGdDrAAoUKjCcMks9g0/kiVui381jscVAyCUzdMtkW25P4QyTeq5+ES7D66j/Jwk+9JqYXhMnX5aAUdMjlrADp1RC1zrZUc1Mfqs+MA26J3X5uQ8xLhh9FaAhDdoyWctKQSTHZyMVuDtmFaGdzaGI3LCWm5w1gvtHC43mTMccc3WrlirYbDrZvN2c81cNMfRJjgJZNnjjY27OAMvGsJJgpo0b+EW4UO74QzZ2VI60fgf7uIajIOgQRzzA=="
+  },
+  "body": {
+    "data": "e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45"
+  }
+}
+```
+
+### 返回
+
+#### Body
+
+| 参数               |  类型  | 说明                                                                  |   例子 |
+| :---------------------- | :----: | ---------------------------------------------------------------------------- | -------------------: |
+| `code`                  | String | 请求的返回结果                                                  |         200          |
+| `encryptedToken`        | String | 加密的数据，需要通过 `CLIENT_SYMMETRIC_KEY` 来解密     |   a83cf72884cbbb....3ddf0744646e0cf0b482            |
+| `message`               | String | 本次请求信息明文 |    'Success' |
+
+> 返回示例
+
+```json
+{
+  "code": 200,
+  "encryptedData": "e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45",
+  "message": "Success"
+}
+```
+
+### 第 5 步：使用 CLIENT_SYMMETRIC_KEY 解密 `encryptedData`
+
+用 **CLIENT_SYMMETRIC_KEY**, `PCd1dlEmFnBXaVce06Pzp7Vike0oHnVJ`
+对称解密 **encryptedData**,  `e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45`  
+
+解密后获取值为
+
+```
+{
+  "data": {
+    "transactionId": "10535",
+  }
+}
+
+```

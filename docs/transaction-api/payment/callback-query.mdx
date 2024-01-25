@@ -1,0 +1,60 @@
+---
+title: Payment Callback Query
+---
+
+import { Box, Heading, Text, Card, Image, Button, Flex } from "rebass";
+
+:::note
+Notify URL or Callback URL to inform server on transaction status after payment is made
+:::
+
+:::warning
+Please ensure you have filled up the Callback URL in Merchant Portal
+:::
+
+### Response Parameters
+
+| Parameter   | Type   | Required | Example              |
+| ----------- | ------ | -------- | -------------------- |
+| `encryptedData` | String | Encrypted Data that required be decrypted with `CLIENT_SYMMETRIC_KEY` | a83cf72884cbbb....3ddf0744646e0cf0b482 |
+
+> Example Response
+
+```json
+{
+  "encryptedData": "e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45",
+}
+```
+
+### Decrypt the `encryptedData` with CLIENT_SYMMETRIC_KEY
+
+Symmetric decrypt the **encryptedData**,  `e4e9ac1120ed867a7af108af8b1ab918cbec6db7b4d7c29908085a73e2b29e97547da6eae91928b3330241f1fb898eebd8c3355105fdd5c68b6ceea761f41dc3085ed888d3c0473beef128ebd208c4f60299df64a622d04d21d81513c02e2d47bfcce2a6c246eabcc1c823aaf3d9133004cf7c4c08236395a05dc19a98c33a301c8b73d4e7fd33cd911619de86dfdb45`  
+with **CLIENT_SYMMETRIC_KEY**, `PCd1dlEmFnBXaVce06Pzp7Vike0oHnVJ`
+
+The result is in plaintext as
+
+```
+{
+  "data": {
+      "status": "SUCCESS",
+      "transaction": {
+          "id": 10310,
+          "amountPaid": 124.1,
+          "confirmedAt": "2022-10-28T16:15:58.314Z",
+          "paymentMethod": "CIMB_MY",
+          "commissionFee": 3.1025,
+          "remark": "Long Wan" // If its FPX related, have chance returned with buyer bank account name
+      },
+      "order": {
+          "id": "20220918020002",
+          "amount": 124.1,
+          "currencyType": "MYR"
+      },
+      "customer": {
+          "name": "114",
+          "phone": "0123456789",
+          "email": "helpcare@mypay88.co"
+      }
+  }
+}
+```

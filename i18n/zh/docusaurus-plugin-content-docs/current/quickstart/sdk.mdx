@@ -1,0 +1,98 @@
+---
+id: sdk
+title: SDK
+---
+
+import { Box, Heading, Text, Card, Image, Button, Flex } from "rebass";
+import classnames from "classnames";
+import styles from "/src/pages/styles.module.css";
+
+提供以下编程语言 SDK 和文档。
+
+:::note
+- 并非所有 SDK 万无一失。 如有任何错误，请联系我们，也欢迎请求变更。
+:::
+
+<Flex flexWrap="wrap" mx={-2}>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-go",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}>Go</Text>
+    </Box>
+  </Box>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-php",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}> PHP</Text>
+    </Box>
+  </Box>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-javascript",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}>NodeJS</Text>
+    </Box>
+  </Box>
+</Flex>
+
+<Flex flexWrap="wrap" mx={-2}>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-java",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}>Java</Text>
+    </Box>
+  </Box>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-python",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}> Python</Text>
+    </Box>
+  </Box>
+  <Box p={2} width={[1, 1 / 3]}>
+    <Box
+      className={styles.box}
+      onClick={() => {
+        window.open(
+          "https://github.com/GoodGameGroupPay/sdk-csharp",
+          "_blank"
+        );
+      }}
+    >
+      <Text className={styles.text}>C#</Text>
+    </Box>
+  </Box>
+</Flex>
