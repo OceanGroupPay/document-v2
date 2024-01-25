@@ -2,6 +2,8 @@
 title: Check Payout Status
 ---
 
+import { EnvVariable } from '../../../src/atoms/EnvVariable';
+
 ### Step 1: Get Access Token
 
 Please refer to [Access Token](/docs/credential/access-token) on how to get `Access Token`, and then place it into Request Headers' **Authorization**.
@@ -58,7 +60,7 @@ Please refer to [Signature Algorithm](/docs/credential/signature-algorithm) on h
 ### Step 4: POST to `/gggpay/v1/getTransactionStatusById` endpoint
 
 **Method :** <span style={{ color: "orange", fontWeight: "bold" }}>POST</span><br/>
-**Endpoint:** <EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`gggpay/v1/getTransactionStatusById`} />
+<b>Endpoint:</b><EnvVariable domainPrefix={`https://api.`} envKey={"ENV_DOMAIN"} domainPostfix={`/gggpay/v1/getTransactionStatusById`} />
 
 ### Request
 
