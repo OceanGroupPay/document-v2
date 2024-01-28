@@ -58,7 +58,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: process.env.ENV_BRAND ?? "GGGPAY",
+        title: "API Doc",
         logo: {
           alt: `${process.env.ENV_BRAND ?? "GGGPAY"} Logo`,
           src: `img/${process.env.ENV_LOGO}`,
